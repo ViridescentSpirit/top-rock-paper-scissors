@@ -17,19 +17,12 @@ function getComputerChoice() {
             break;
     }
 }
-
-getComputerChoice();
 //Determine the players selection by collecting an input
 function getPlayerChoice() {
     return prompt("Rock, Paper, or Scissors?")
 }
-
-playerSelection = getPlayerChoice();
 //guarantee that the player selection will match case with the computer selection regardless
 //of actual user input
-playerSelection = playerSelection.toLowerCase();
-console.log("Computer Chose: " + computerSelection);
-console.log("Player Chose: " + playerSelection);
 //Compare the computers selection and the players selection to determine a winner
 let gameResult = "None";
 
@@ -48,6 +41,38 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-gameResult = playRound(playerSelection, computerSelection);
-console.log(gameResult);
-//If players select the same choice, replay the round until a winner is determined
+let winCount = 0;
+let lossCount = 0;
+
+function game() {
+    getComputerChoice();
+    playerSelection = getPlayerChoice();
+    playerSelection = playerSelection.toLowerCase();
+
+    console.log("Computer Chose: " + computerSelection);
+    console.log("Player Chose: " + playerSelection);
+    
+    gameResult = playRound(playerSelection, computerSelection);
+    
+    switch(gameResult) {
+        case "win":
+            winCount++;
+            break;
+        case "loss":
+            lossCount++;
+            break;
+        case "tie":
+            break;
+    }
+}
+
+game();
+game();
+game();
+game();
+game();
+game();
+game();
+
+console.log("Wins: " + winCount);
+console.log("Losses: " + lossCount);
