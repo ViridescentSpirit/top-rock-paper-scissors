@@ -10,18 +10,28 @@ let computerRandomChoice = getComputerChoice();
 
 switch (computerRandomChoice) {
     case 1:
-        computerSelection = "Rock";
+        computerSelection = "rock";
         break;
     case 2:
-        computerSelection = "Paper";
+        computerSelection = "paper";
         break;
     case 3:
-        computerSelection = "Scissors";
+        computerSelection = "scissors";
         break;
 }
 
 console.log(computerRandomChoice);
 console.log(computerSelection);
 //Determine the players selection by collecting an input
+function getPlayerChoice() {
+    return prompt("Rock, Paper, or Scissors?")
+}
+
+playerSelection = getPlayerChoice();
+console.log(playerSelection);
+//guarantee that the player selection will match case with the computer selection regardless
+//of actual user input
+playerSelection = playerSelection.toLowerCase();
+console.log(playerSelection);
 //Compare the computers selection and the players selection to determine a winner
 //If players select the same choice, replay the round until a winner is determined
