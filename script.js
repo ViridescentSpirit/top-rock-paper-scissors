@@ -43,36 +43,3 @@ function playRound(playerSelection, computerSelection) {
 
 let winCount = 0;
 let lossCount = 0;
-
-function game() {
-    getComputerChoice();
-    playerSelection = getPlayerChoice();
-    playerSelection = playerSelection.toLowerCase();
-
-    console.log("Computer Chose: " + computerSelection);
-    console.log("Player Chose: " + playerSelection);
-    
-    gameResult = playRound(playerSelection, computerSelection);
-    
-    switch(gameResult) {
-        case "win":
-            winCount++;
-            break;
-        case "loss":
-            lossCount++;
-            break;
-        case "tie":
-            break;
-    }
-}
-
-game();
-game();
-game();
-game();
-game();
-game();
-game();
-
-console.log("Wins: " + winCount);
-console.log("Losses: " + lossCount);
