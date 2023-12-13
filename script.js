@@ -17,15 +17,33 @@ function getComputerChoice() {
             break;
     }
 }
-//Determine the players selection by collecting an input
-function getPlayerChoice() {
-    return prompt("Rock, Paper, or Scissors?")
-}
+
+let game = document.querySelector(`.game`);
+
+game.addEventListener(`click`, event => {
+    let target = event.target;
+
+    switch(target.id) {
+        case `rock`:
+            playerSelection = `rock`;
+            break;
+        case `paper`:
+            playerSelection = `paper`;
+            break;
+        case `scissors`:
+            playerSelection = `scissors`;
+            break;
+    }
+    getComputerChoice();
+    playRound(playerSelection,computerSelection);
+});
 
 //Compare the computers selection and the players selection to determine a winner
 let gameResult = "None";
 
 function playRound(playerSelection, computerSelection) {
+    console.log(playerSelection);
+    console.log(computerSelection);
     if (playerSelection === computerSelection) {
         console.log("Tie! Replay round!");
         return gameResult = "tie";
