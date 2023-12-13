@@ -21,8 +21,7 @@ function getComputerChoice() {
 function getPlayerChoice() {
     return prompt("Rock, Paper, or Scissors?")
 }
-//guarantee that the player selection will match case with the computer selection regardless
-//of actual user input
+
 //Compare the computers selection and the players selection to determine a winner
 let gameResult = "None";
 

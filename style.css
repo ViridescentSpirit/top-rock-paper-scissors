@@ -1,0 +1,26 @@
+ul {
+    list-style: none;
+}
+
+h1, p {
+    text-align: center;
+}
+
+.game, ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+li {
+    flex-grow: 2;
+}
+
+.playerChoice {
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 2px;
+}
