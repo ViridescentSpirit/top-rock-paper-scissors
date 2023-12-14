@@ -18,45 +18,88 @@ function getComputerChoice() {
     }
 }
 
+let gameActive = `true`;
+let gameResult = `None`;
+let winCount = 0;
+let lossCount = 0;
+
 let game = document.querySelector(`.game`);
 
 game.addEventListener(`click`, event => {
-    let target = event.target;
+    if(gameActive === `true`) {
+        let target = event.target;
 
-    switch(target.id) {
-        case `rock`:
-            playerSelection = `rock`;
-            break;
-        case `paper`:
-            playerSelection = `paper`;
-            break;
-        case `scissors`:
-            playerSelection = `scissors`;
-            break;
+        switch(target.id) {
+            case `rock`:
+                playerSelection = `rock`;
+                break;
+            case `paper`:
+                playerSelection = `paper`;
+                break;
+            case `scissors`:
+                playerSelection = `scissors`;
+                break;
+        }
+
+        getComputerChoice();
+        playRound(playerSelection,computerSelection);
+        scoreRound(gameResult);
+        gameOverCheck(winCount, lossCount);
     }
-    getComputerChoice();
-    playRound(playerSelection,computerSelection);
 });
 
-//Compare the computers selection and the players selection to determine a winner
-let gameResult = "None";
+function scoreRound(gameResult) {
+    let playerScore = document.querySelector(`#playerScore`);
+    let computerScore = document.querySelector(`#computerScore`);
+
+    if (gameResult === `win`) {
+        ++winCount;
+        playerScore.textContent = `Player: ${winCount}`;
+    } else if (gameResult === `loss`) {
+        ++lossCount;
+        computerScore.textContent = `Computer: ${lossCount}`;
+    }
+}
 
 function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection);
-    console.log(computerSelection);
+    let roundResult = document.querySelector(`#roundResult`);
+    roundResult.textContent = `You chose ${playerSelection}, computer chose ${computerSelection}! `;
+
     if (playerSelection === computerSelection) {
-        console.log("Tie! Replay round!");
+        roundResult.textContent += `Tie! Replay round!`;
         return gameResult = "tie";
     } else if ((playerSelection === "rock" && computerSelection === "scissors") ||
                 (playerSelection === "scissors" && computerSelection === "paper") ||
                 (playerSelection === "paper" && computerSelection === "rock") ) {
-        console.log("Player Wins! Good Job!");
+        roundResult.textContent += `Player Wins! Good Job!`;
         return gameResult = "win";
     } else {
-        console.log("Computer wins, you're an idiot!");
+        roundResult.textContent += `Computer wins, you're an idiot!`;
         return gameResult = "loss";
     }
+    
 }
 
-let winCount = 0;
-let lossCount = 0;
+function gameOverCheck() {
+    if (winCount === 5 || lossCount === 5) {
+        let results = document.querySelector(`.results`);
+        const gameOver = document.createElement(`p`);
+        const resetButton = document.createElement('button');
+
+        if (winCount === 5) {
+            gameOver.textContent = `Congratulations! You beat the Computer!!`;
+        } else {
+            gameOver.textContent = `Wow... can't even beat a silly computer... disappointing.`;
+        }
+
+        resetButton.textContent = `Play Again!`;
+        resetButton.style.position = `absolute`;
+        resetButton.style.left = `50%`;
+        resetButton.style.transform = `translateX(-50%)`;
+
+        results.appendChild(gameOver);
+        results.appendChild(resetButton);
+
+        gameActive = `false`;
+    }
+}

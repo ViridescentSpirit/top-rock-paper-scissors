@@ -6,7 +6,7 @@ h1, p {
     text-align: center;
 }
 
-.game, ul {
+.game, ul, .scoreboard {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -16,7 +16,7 @@ li {
     flex-grow: 2;
 }
 
-.playerChoice {
+button {
     padding: 10px;
     background-color: blue;
     color: white;
