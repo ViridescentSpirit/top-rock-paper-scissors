@@ -92,14 +92,36 @@ function gameOverCheck() {
             gameOver.textContent = `Wow... can't even beat a silly computer... disappointing.`;
         }
 
+        gameOver.id = `gameOver`;
+        resetButton.id = `reset`;
         resetButton.textContent = `Play Again!`;
         resetButton.style.position = `absolute`;
         resetButton.style.left = `50%`;
         resetButton.style.transform = `translateX(-50%)`;
-
+        
         results.appendChild(gameOver);
         results.appendChild(resetButton);
+
+        document.getElementById(`reset`).addEventListener(`click`, reset);
 
         gameActive = `false`;
     }
 }
+
+
+function reset()  {
+    winCount = 0;
+    lossCount = 0;
+
+    let gameOver = document.querySelector(`#gameOver`);
+    let resetButton = document.querySelector(`#reset`);
+
+    gameOver.remove();
+    resetButton.remove();
+
+    roundResult.textContent = ``;
+    playerScore.textContent = `Player: ${winCount}`;
+    computerScore.textContent = `Computer: ${lossCount}`;
+
+    gameActive = `true`;
+};
